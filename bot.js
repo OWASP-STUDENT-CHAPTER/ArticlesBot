@@ -2,7 +2,9 @@ const Commando = require('discord.js-commando');
 const path = require('path');
 require('dotenv').config();
 const fs = require('fs');
-const cron = require('node-cron');
+// const cron = require('node-cron');
+const cron = require("cron");
+
 
 const prefix = process.env.prefix;
 
@@ -35,13 +37,13 @@ client.login(process.env.DISCORDJS_BOT_TOKEN);
 //         });
 //     });
 // });
-let scheduledMessage = new cron.CronJob('00 29 23 * * *', () => {
 
+let scheduledMessage = new cron.CronJob('00 50 23 * * *', () => {
     //client.channels.cache.get('895735273961447437').send(match.t1);
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-        const sample = require(`./samples/scrape2`);
-        let scrap = sample.start(client,dd);
+    const sample = require(`./samples/scrape2`);
+    let scrap = sample.start(client,dd);
 });
 
 scheduledMessage.start();
