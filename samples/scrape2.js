@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 module.exports ={
-    start: async function(client){
+    start: async function(client,dd){
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
         await page.setDefaultNavigationTimeout(0);
@@ -12,7 +12,7 @@ module.exports ={
 
         for(const link of links){
             const date = link.toString().split('/').slice(5,6);
-            if(date == '04'){
+            if(date == dd){
                 await page.goto(link);
                 let title = await page.$eval(".article__title", ele => ele.textContent);
                 title = '**'+title+'**';
